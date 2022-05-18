@@ -91,8 +91,8 @@ var trace1 = {
 
 //API que aporta los datos de la gráfica pokémon
 var urlPokeApi = "https://pokeapi.co/api/v2/pokemon/arcanine";
-var habilidad = [];
-var puntaje = [];
+var habilidades = [];
+var puntajes = [];
 
 
 
@@ -102,11 +102,34 @@ fetch(urlPokeApi)
 .then(function transformar(habilidades_poke){
 
     habilidades_poke.stats.forEach(function agregar (habilidades_poke){
-        puntaje.push(habilidades_poke["base_stat"]);
-        habilidad.push(habilidades_poke["stat"]["name"]);
+        puntajes.push(habilidades_poke["base_stat"]);
+        habilidades.push(habilidades_poke["stat"]["name"]);
     });
 
+    puntajes.forEach(function(puntaje) {
+        parseInt(puntaje);
+    });
 
+    //Variables para las gráficas
+    var data =[{
+        type: 'scatterpolar',
+        r: puntajes,
+        theta: habilidades,
+        fill: 'toself',
+        name: 'Habilidades de Arcanine'
+    }];
+
+    var layout = {
+        polar: {
+            radialaxis: {
+              visible: false,
+              range: [0, 120]
+            }
+          },
+          showlegend: false
+    };
+      
+    Plotly.newPlot('habilidadesPokemon', data, layout);
 });
 
 
