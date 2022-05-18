@@ -81,7 +81,14 @@ var trace1 = {
   var data = [trace1];
   
   var layout = {
+    xaxis:{
+        title: 'Cantidad de muestras tomadas',
+    },
+    yaxis:{
+        title: 'Tráfico en las zonas Wi-fi'
+    },
     title: 'Información del tráfico en zonas Wi-Fi en el Valle del Cauca'
+    
   };
   
   Plotly.newPlot('myDiv', data, layout);
