@@ -89,4 +89,27 @@ var trace1 = {
   
 });
 
+//API que aporta los datos de la gráfica pokémon
+var urlPokeApi = "https://pokeapi.co/api/v2/pokemon/arcanine";
+var habilidad = [];
+var puntaje = [];
+
+
+
+fetch(urlPokeApi)
+
+.then(habilidades_poke => habilidades_poke.json())
+.then(function transformar(habilidades_poke){
+
+    habilidades_poke.stats.forEach(function agregar (habilidades_poke){
+        puntaje.push(habilidades_poke["base_stat"]);
+        habilidad.push(habilidades_poke["stat"]["name"]);
+    });
+
+
+});
+
+
+
+
 
